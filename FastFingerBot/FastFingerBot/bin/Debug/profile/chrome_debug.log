@@ -1,0 +1,12 @@
+[44976:42788:0709/144326.840:INFO:CONSOLE(79)] "2020-07-09T14:43:26.840: Initializing adguard", source: chrome-extension://bgnkhhnnamicmpeenaelnjfhikgbkllg/lib/utils/log.js (79)
+[44976:42788:0709/144326.903:INFO:CONSOLE(79)] "2020-07-09T14:43:26.896: Starting adguard... Version: 3.4.31. Id: bgnkhhnnamicmpeenaelnjfhikgbkllg", source: chrome-extension://bgnkhhnnamicmpeenaelnjfhikgbkllg/lib/utils/log.js (79)
+[44976:42788:0709/144326.905:INFO:CONSOLE(79)] "2020-07-09T14:43:26.905: Uninstall url was set to: https://adguard.com/forward.html?action=adguard_uninstal_ext&from=background&app=browser_extension", source: chrome-extension://bgnkhhnnamicmpeenaelnjfhikgbkllg/lib/utils/log.js (79)
+[44976:42788:0709/144326.923:INFO:CONSOLE(79)] "2020-07-09T14:43:26.923: Filters metadata loaded", source: chrome-extension://bgnkhhnnamicmpeenaelnjfhikgbkllg/lib/utils/log.js (79)
+[44976:42788:0709/144326.950:INFO:CONSOLE(79)] "2020-07-09T14:43:26.950: Filters i18n metadata loaded", source: chrome-extension://bgnkhhnnamicmpeenaelnjfhikgbkllg/lib/utils/log.js (79)
+[44976:42788:0709/144326.995:INFO:CONSOLE(79)] "2020-07-09T14:43:26.995: Filters local script rules loaded", source: chrome-extension://bgnkhhnnamicmpeenaelnjfhikgbkllg/lib/utils/log.js (79)
+[44976:42788:0709/144327.073:INFO:CONSOLE(79)] "2020-07-09T14:43:27.067: Filters redirect sources loaded", source: chrome-extension://bgnkhhnnamicmpeenaelnjfhikgbkllg/lib/utils/log.js (79)
+[44976:42788:0709/144327.080:INFO:CONSOLE(79)] "2020-07-09T14:43:27.078: Starting loading filter rules from the storage", source: chrome-extension://bgnkhhnnamicmpeenaelnjfhikgbkllg/lib/utils/log.js (79)
+[44976:42788:0709/144327.658:INFO:CONSOLE(79)] "2020-07-09T14:43:27.658: Finished loading filter rules from the storage in 580 ms", source: chrome-extension://bgnkhhnnamicmpeenaelnjfhikgbkllg/lib/utils/log.js (79)
+[44976:42788:0709/144327.659:INFO:CONSOLE(79)] "2020-07-09T14:43:27.659: Starting request filter initialization. Async=false", source: chrome-extension://bgnkhhnnamicmpeenaelnjfhikgbkllg/lib/utils/log.js (79)
+[44976:42788:0709/144329.724:INFO:CONSOLE(79)] "2020-07-09T14:43:29.724: Finished request filter initialization in 2065 ms. Rules count: 94953", source: chrome-extension://bgnkhhnnamicmpeenaelnjfhikgbkllg/lib/utils/log.js (79)
+[44976:42788:0709/144347.296:WARNING:pref_notifier_impl.cc(40)] Pref observer for media_router.cast_allow_all_ips found at shutdown.

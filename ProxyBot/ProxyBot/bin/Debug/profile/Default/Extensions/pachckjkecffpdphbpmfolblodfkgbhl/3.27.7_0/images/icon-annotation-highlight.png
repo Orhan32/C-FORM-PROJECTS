@@ -1,0 +1,23 @@
+rtina_Wire_Coil_DisplayName">
+            <English>Concertina Wire Coil</English>
+            <German>NATO-Draht Rolle</German>
+            <Russian>Колючая проволока (моток)</Russian>
+            <Polish>Zwój koncentriny</Polish>
+            <Spanish>Bobina de alambre de espino</Spanish>
+            <French>Bobine de fil barbelé</French>
+            <Czech>Svitek ostnatého drátu</Czech>
+            <Italian>Bobina di filo a concertina</Italian>
+            <Hungarian>Concertina wire coil</Hungarian>
+            <Portuguese>Bobina de arame farpado</Portuguese>
+            <Japanese>鉄条網コイル</Japanese>
+            <Korean>윤형 철조망</Korean>
+            <Chinese>鐵絲網捲</Chinese>
+            <Chinesesimp>铁丝网卷</Chinesesimp>
+            <Turkish>Bıçaklı Tel Rulo</Turkish>
+        </Key>
+        <Key ID="STR_ACE_Concertina_Wire_UnrollWire">
+            <English>Dismount Concertina Wire</English>
+            <German>NATO-Draht abbauen</German>
+            <Russian>Демонтировать колючую проволоку</Russian>
+            <Polish>Zwiń koncentrinę</Polish>
+            <Spanish>Desm

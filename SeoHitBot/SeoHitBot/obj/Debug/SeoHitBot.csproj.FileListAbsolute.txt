@@ -1,0 +1,13 @@
+E:\Projeler\Form C#\SeoHitBot\SeoHitBot\obj\Debug\SeoHitBot.csprojAssemblyReference.cache
+E:\Projeler\Form C#\SeoHitBot\SeoHitBot\obj\Debug\SeoHitBot.Form1.resources
+E:\Projeler\Form C#\SeoHitBot\SeoHitBot\obj\Debug\SeoHitBot.Properties.Resources.resources
+E:\Projeler\Form C#\SeoHitBot\SeoHitBot\obj\Debug\SeoHitBot.csproj.GenerateResource.cache
+E:\Projeler\Form C#\SeoHitBot\SeoHitBot\obj\Debug\SeoHitBot.csproj.CoreCompileInputs.cache
+E:\Projeler\Form C#\SeoHitBot\SeoHitBot\bin\Debug\SeoHitBot.exe.config
+E:\Projeler\Form C#\SeoHitBot\SeoHitBot\bin\Debug\SeoHitBot.exe
+E:\Projeler\Form C#\SeoHitBot\SeoHitBot\bin\Debug\SeoHitBot.pdb
+E:\Projeler\Form C#\SeoHitBot\SeoHitBot\bin\Debug\WebDriver.dll
+E:\Projeler\Form C#\SeoHitBot\SeoHitBot\bin\Debug\WebDriver.xml
+E:\Projeler\Form C#\SeoHitBot\SeoHitBot\obj\Debug\SeoHitBot.csproj.CopyComplete
+E:\Projeler\Form C#\SeoHitBot\SeoHitBot\obj\Debug\SeoHitBot.exe
+E:\Projeler\Form C#\SeoHitBot\SeoHitBot\obj\Debug\SeoHitBot.pdb

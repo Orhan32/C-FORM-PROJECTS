@@ -1,0 +1,14 @@
+E:\Projeler\C# FORM\Twitch Bot\Twitch Bot\bin\Debug\Twitch Bot.exe.config
+E:\Projeler\C# FORM\Twitch Bot\Twitch Bot\bin\Debug\Twitch Bot.exe
+E:\Projeler\C# FORM\Twitch Bot\Twitch Bot\bin\Debug\Twitch Bot.pdb
+E:\Projeler\C# FORM\Twitch Bot\Twitch Bot\bin\Debug\MaterialSkin.dll
+E:\Projeler\C# FORM\Twitch Bot\Twitch Bot\obj\Debug\Twitch Bot.csprojAssemblyReference.cache
+E:\Projeler\C# FORM\Twitch Bot\Twitch Bot\obj\Debug\Twitch_Bot.Properties.Resources.resources
+E:\Projeler\C# FORM\Twitch Bot\Twitch Bot\obj\Debug\Twitch Bot.csproj.GenerateResource.cache
+E:\Projeler\C# FORM\Twitch Bot\Twitch Bot\obj\Debug\Twitch Bot.csproj.CoreCompileInputs.cache
+E:\Projeler\C# FORM\Twitch Bot\Twitch Bot\obj\Debug\Twitch Bot.csproj.CopyComplete
+E:\Projeler\C# FORM\Twitch Bot\Twitch Bot\obj\Debug\Twitch Bot.exe
+E:\Projeler\C# FORM\Twitch Bot\Twitch Bot\obj\Debug\Twitch Bot.pdb
+E:\Projeler\C# FORM\Twitch Bot\Twitch Bot\bin\Debug\WebDriver.dll
+E:\Projeler\C# FORM\Twitch Bot\Twitch Bot\bin\Debug\WebDriver.xml
+E:\Projeler\C# FORM\Twitch Bot\Twitch Bot\obj\Debug\Twitch_Bot.Twitch.resources

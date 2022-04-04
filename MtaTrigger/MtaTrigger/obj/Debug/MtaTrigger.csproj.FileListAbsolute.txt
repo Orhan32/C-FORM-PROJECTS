@@ -1,0 +1,12 @@
+E:\Projeler\C# FORM\MtaTrigger\MtaTrigger\bin\Debug\MtaTrigger.exe.config
+E:\Projeler\C# FORM\MtaTrigger\MtaTrigger\bin\Debug\MtaTrigger.exe
+E:\Projeler\C# FORM\MtaTrigger\MtaTrigger\bin\Debug\MtaTrigger.pdb
+E:\Projeler\C# FORM\MtaTrigger\MtaTrigger\obj\Debug\MtaTrigger.csprojAssemblyReference.cache
+E:\Projeler\C# FORM\MtaTrigger\MtaTrigger\obj\Debug\MtaTrigger.Form1.resources
+E:\Projeler\C# FORM\MtaTrigger\MtaTrigger\obj\Debug\MtaTrigger.Properties.Resources.resources
+E:\Projeler\C# FORM\MtaTrigger\MtaTrigger\obj\Debug\MtaTrigger.csproj.GenerateResource.cache
+E:\Projeler\C# FORM\MtaTrigger\MtaTrigger\obj\Debug\MtaTrigger.csproj.CoreCompileInputs.cache
+E:\Projeler\C# FORM\MtaTrigger\MtaTrigger\obj\Debug\MtaTrigger.exe
+E:\Projeler\C# FORM\MtaTrigger\MtaTrigger\obj\Debug\MtaTrigger.pdb
+E:\Projeler\C# FORM\MtaTrigger\MtaTrigger\obj\Debug\Interop.AutoItX3Lib.dll
+E:\Projeler\C# FORM\MtaTrigger\MtaTrigger\obj\Debug\MtaTrigger.csproj.ResolveComReference.cache

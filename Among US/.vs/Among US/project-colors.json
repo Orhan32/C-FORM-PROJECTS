@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "0b735054-4e69-425b-8c7d-b3dbeb53a6f4": {
+      "ProjectGuid": "0b735054-4e69-425b-8c7d-b3dbeb53a6f4",
+      "DisplayName": "Among US",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

@@ -1,0 +1,10 @@
+E:\Projeler\Form C#\Arduino Led Yakma\Arduino Led Yakma\bin\Debug\Arduino Led Yakma.exe.config
+E:\Projeler\Form C#\Arduino Led Yakma\Arduino Led Yakma\bin\Debug\Arduino Led Yakma.exe
+E:\Projeler\Form C#\Arduino Led Yakma\Arduino Led Yakma\bin\Debug\Arduino Led Yakma.pdb
+E:\Projeler\Form C#\Arduino Led Yakma\Arduino Led Yakma\obj\Debug\Arduino Led Yakma.csprojAssemblyReference.cache
+E:\Projeler\Form C#\Arduino Led Yakma\Arduino Led Yakma\obj\Debug\Arduino_Led_Yakma.Form1.resources
+E:\Projeler\Form C#\Arduino Led Yakma\Arduino Led Yakma\obj\Debug\Arduino_Led_Yakma.Properties.Resources.resources
+E:\Projeler\Form C#\Arduino Led Yakma\Arduino Led Yakma\obj\Debug\Arduino Led Yakma.csproj.GenerateResource.cache
+E:\Projeler\Form C#\Arduino Led Yakma\Arduino Led Yakma\obj\Debug\Arduino Led Yakma.csproj.CoreCompileInputs.cache
+E:\Projeler\Form C#\Arduino Led Yakma\Arduino Led Yakma\obj\Debug\Arduino Led Yakma.exe
+E:\Projeler\Form C#\Arduino Led Yakma\Arduino Led Yakma\obj\Debug\Arduino Led Yakma.pdb

@@ -1,0 +1,39 @@
+C:\Users\orhan\source\repos\ProxyBot\ProxyBot\bin\Debug\ProxyBot.exe.config
+C:\Users\orhan\source\repos\ProxyBot\ProxyBot\bin\Debug\ProxyBot.exe
+C:\Users\orhan\source\repos\ProxyBot\ProxyBot\bin\Debug\ProxyBot.pdb
+C:\Users\orhan\source\repos\ProxyBot\ProxyBot\bin\Debug\WebDriver.dll
+C:\Users\orhan\source\repos\ProxyBot\ProxyBot\bin\Debug\WebDriver.xml
+C:\Users\orhan\source\repos\ProxyBot\ProxyBot\obj\Debug\ProxyBot.csprojAssemblyReference.cache
+C:\Users\orhan\source\repos\ProxyBot\ProxyBot\obj\Debug\ProxyBot.Form1.resources
+C:\Users\orhan\source\repos\ProxyBot\ProxyBot\obj\Debug\ProxyBot.Properties.Resources.resources
+C:\Users\orhan\source\repos\ProxyBot\ProxyBot\obj\Debug\ProxyBot.csproj.GenerateResource.cache
+C:\Users\orhan\source\repos\ProxyBot\ProxyBot\obj\Debug\ProxyBot.csproj.CoreCompileInputs.cache
+C:\Users\orhan\source\repos\ProxyBot\ProxyBot\obj\Debug\ProxyBot.csproj.CopyComplete
+C:\Users\orhan\source\repos\ProxyBot\ProxyBot\obj\Debug\ProxyBot.exe
+C:\Users\orhan\source\repos\ProxyBot\ProxyBot\obj\Debug\ProxyBot.pdb
+E:\Projeler\Form C#\ProxyBot\ProxyBot\bin\Debug\ProxyBot.exe.config
+E:\Projeler\Form C#\ProxyBot\ProxyBot\bin\Debug\ProxyBot.exe
+E:\Projeler\Form C#\ProxyBot\ProxyBot\bin\Debug\ProxyBot.pdb
+E:\Projeler\Form C#\ProxyBot\ProxyBot\bin\Debug\WebDriver.dll
+E:\Projeler\Form C#\ProxyBot\ProxyBot\bin\Debug\WebDriver.xml
+E:\Projeler\Form C#\ProxyBot\ProxyBot\obj\Debug\ProxyBot.csprojAssemblyReference.cache
+E:\Projeler\Form C#\ProxyBot\ProxyBot\obj\Debug\ProxyBot.Form1.resources
+E:\Projeler\Form C#\ProxyBot\ProxyBot\obj\Debug\ProxyBot.Properties.Resources.resources
+E:\Projeler\Form C#\ProxyBot\ProxyBot\obj\Debug\ProxyBot.csproj.GenerateResource.cache
+E:\Projeler\Form C#\ProxyBot\ProxyBot\obj\Debug\ProxyBot.csproj.CoreCompileInputs.cache
+E:\Projeler\Form C#\ProxyBot\ProxyBot\obj\Debug\ProxyBot.csproj.CopyComplete
+E:\Projeler\Form C#\ProxyBot\ProxyBot\obj\Debug\ProxyBot.exe
+E:\Projeler\Form C#\ProxyBot\ProxyBot\obj\Debug\ProxyBot.pdb
+E:\Projeler\C# FORM\ProxyBot\ProxyBot\bin\Debug\ProxyBot.exe.config
+E:\Projeler\C# FORM\ProxyBot\ProxyBot\bin\Debug\ProxyBot.exe
+E:\Projeler\C# FORM\ProxyBot\ProxyBot\bin\Debug\ProxyBot.pdb
+E:\Projeler\C# FORM\ProxyBot\ProxyBot\bin\Debug\WebDriver.dll
+E:\Projeler\C# FORM\ProxyBot\ProxyBot\bin\Debug\WebDriver.xml
+E:\Projeler\C# FORM\ProxyBot\ProxyBot\obj\Debug\ProxyBot.csprojAssemblyReference.cache
+E:\Projeler\C# FORM\ProxyBot\ProxyBot\obj\Debug\ProxyBot.Form1.resources
+E:\Projeler\C# FORM\ProxyBot\ProxyBot\obj\Debug\ProxyBot.Properties.Resources.resources
+E:\Projeler\C# FORM\ProxyBot\ProxyBot\obj\Debug\ProxyBot.csproj.GenerateResource.cache
+E:\Projeler\C# FORM\ProxyBot\ProxyBot\obj\Debug\ProxyBot.csproj.CoreCompileInputs.cache
+E:\Projeler\C# FORM\ProxyBot\ProxyBot\obj\Debug\ProxyBot.csproj.CopyComplete
+E:\Projeler\C# FORM\ProxyBot\ProxyBot\obj\Debug\ProxyBot.exe
+E:\Projeler\C# FORM\ProxyBot\ProxyBot\obj\Debug\ProxyBot.pdb

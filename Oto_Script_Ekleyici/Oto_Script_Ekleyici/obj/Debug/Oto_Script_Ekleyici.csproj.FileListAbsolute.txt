@@ -1,0 +1,10 @@
+E:\Projeler\C# FORM\Oto_Script_Ekleyici\Oto_Script_Ekleyici\bin\Debug\Oto_Script_Ekleyici.exe.config
+E:\Projeler\C# FORM\Oto_Script_Ekleyici\Oto_Script_Ekleyici\bin\Debug\Oto_Script_Ekleyici.exe
+E:\Projeler\C# FORM\Oto_Script_Ekleyici\Oto_Script_Ekleyici\bin\Debug\Oto_Script_Ekleyici.pdb
+E:\Projeler\C# FORM\Oto_Script_Ekleyici\Oto_Script_Ekleyici\obj\Debug\Oto_Script_Ekleyici.csprojAssemblyReference.cache
+E:\Projeler\C# FORM\Oto_Script_Ekleyici\Oto_Script_Ekleyici\obj\Debug\Oto_Script_Ekleyici.Properties.Resources.resources
+E:\Projeler\C# FORM\Oto_Script_Ekleyici\Oto_Script_Ekleyici\obj\Debug\Oto_Script_Ekleyici.csproj.GenerateResource.cache
+E:\Projeler\C# FORM\Oto_Script_Ekleyici\Oto_Script_Ekleyici\obj\Debug\Oto_Script_Ekleyici.csproj.CoreCompileInputs.cache
+E:\Projeler\C# FORM\Oto_Script_Ekleyici\Oto_Script_Ekleyici\obj\Debug\Oto_Script_Ekleyici.exe
+E:\Projeler\C# FORM\Oto_Script_Ekleyici\Oto_Script_Ekleyici\obj\Debug\Oto_Script_Ekleyici.pdb
+E:\Projeler\C# FORM\Oto_Script_Ekleyici\Oto_Script_Ekleyici\obj\Debug\Oto_Script_Ekleyici.btn_Asagi.resources

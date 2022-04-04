@@ -1,0 +1,55 @@
+{
+   "app": {
+      "display_mode": "browser",
+      "icon_color": "#77AA2B",
+      "launch": {
+         "web_url": "https://www.google.com/maps?force=tt&source=ttpwa"
+      },
+      "linked_icons": [ {
+         "size": 32,
+         "url": "https://www.gstatic.com/images/branding/product/1x/maps_round_192dp.png"
+      }, {
+         "size": 48,
+         "url": "https://www.gstatic.com/images/branding/product/1x/maps_round_192dp.png"
+      }, {
+         "size": 64,
+         "url": "https://www.gstatic.com/images/branding/product/1x/maps_round_192dp.png"
+      }, {
+         "size": 96,
+         "url": "https://www.gstatic.com/images/branding/product/1x/maps_round_192dp.png"
+      }, {
+         "size": 128,
+         "url": "https://www.gstatic.com/images/branding/product/1x/maps_round_192dp.png"
+      }, {
+         "size": 144,
+         "url": "https://www.gstatic.com/images/branding/product/1x/maps_round_192dp.png"
+      }, {
+         "size": 256,
+         "url": "https://www.gstatic.com/images/branding/product/1x/maps_round_512dp.png"
+      }, {
+         "size": 512,
+         "url": "https://www.gstatic.com/images/branding/product/1x/maps_round_512dp.png"
+      } ],
+      "theme_color": "rgba(51,103,214,1)"
+   },
+   "description": "",
+   "icons": {
+      "128": "icons/128.png",
+      "192": "icons/192.png",
+      "256": "icons/256.png",
+      "32": "icons/32.png",
+      "48": "icons/48.png",
+      "512": "icons/512.png",
+      "64": "icons/64.png",
+      "96": "icons/96.png"
+   },
+   "key": "5tCAKHKfVJgH8kK0tzDIh58VYdVRaN7K6sfyxIXLiqE=",
+   "name": "Google Maps",
+   "url_handlers": {
+      "scope": {
+         "matches": [ "https://www.google.com/maps*" ],
+         "title": "Google Maps"
+      }
+   },
+   "version": "2020.6.29.56580"
+}

@@ -1,0 +1,1121 @@
+<?php
+namespace Braintree;
+
+use finfo;
+
+/**
+ * Braintree HTTP Client
+ * processes Http requests using curl
+ */
+class Http
+{
+    protected $_config;
+    private $_useClientCredentials = false;
+
+    public function __construct($config)
+    {
+        $this->_config = $config;
+    }
+
+    public function delete($path, $params = null)
+    {
+        $response = $this->_doRequest('DELETE', $path, $this->_buildXml($params));
+        $responseCode = $response['status'];
+        if ($responseCode === 200 || $responseCode === 204) {
+            return true;
+        } else if ($responseCode === 422) {
+            return Xml::buildArrayFromXml($response['body']);
+        } else {
+            Util::throwStatusCodeException($response['status']);
+        }
+    }
+
+    public function get($path)
+    {
+        $response = $this->_doRequest('GET', $path);
+        if ($response['status'] === 200) {
+            return Xml::buildArrayFromXml($response['body']);
+        } else {
+            Util::throwStatusCodeException($response['status']);
+        }
+    }
+
+    public function post($path, $params = null)
+    {
+        $response = $this->_doRequest('POST', $path, $this->_buildXml($params));
+        $responseCode = $response['status'];
+        if ($responseCode === 200 || $responseCode === 201 || $responseCode === 422 || $responseCode == 400) {
+            return Xml::buildArrayFromXml($response['body']);
+        } else {
+            Util::throwStatusCodeException($responseCode);
+        }
+    }
+
+    public function postMultipart($path, $params, $file)
+    {
+        $headers = [
+            'User-Agent: Braintree PHP Library ' . Version::get(),
+            'X-ApiVersion: ' . Configuration::API_VERSION
+        ];
+        $response = $this->_doRequest('POST', $path, $params, $file, $headers);
+        $responseCode = $response['status'];
+        if ($responseCode === 200 || $responseCode === 201 || $responseCode === 422 || $responseCode == 400) {
+            return Xml::buildArrayFromXml($response['body']);
+        } else {
+            Util::throwStatusCodeException($responseCode);
+        }
+    }
+
+    public function put($path, $params = null)
+    {
+        $response = $this->_doRequest('PUT', $path, $this->_buildXml($params));
+        $responseCode = $response['status'];
+        if ($responseCode === 200 || $responseCode === 201 || $responseCode === 422 || $responseCode == 400) {
+            return Xml::buildArrayFromXml($response['body']);
+        } else {
+            Util::throwStatusCodeException($responseCode);
+        }
+    }
+
+    private function _buildXml($params)
+    {
+        return empty($params) ? null : Xml::buildXmlFromArray($params);
+    }
+
+    private function _getHeaders()
+    {
+        return [
+            'Accept: application/xml',
+        ];
+    }
+
+    private function _getAuthorization()
+    {
+        if ($this->_useClientCredentials) {
+            return [
+                'user' => $this->_config->getClientId(),
+                'password' => $this->_config->getClientSecret(),
+            ];
+        } else if ($this->_config->isAccessToken()) {
+            return [
+                'token' => $this->_config->getAccessToken(),
+            ];
+        } else {
+            return [
+                'user' => $this->_config->getPublicKey(),
+                'password' => $this->_config->getPrivateKey(),
+            ];
+        }
+    }
+
+    public function useClientCredentials()
+    {
+        $this->_useClientCredentials = true;
+    }
+
+    private function _doRequest($httpVerb, $path, $requestBody = null, $file = null, $headers = null)
+    {
+        return $this->_doUrlRequest($httpVerb, $this->_config->baseUrl() . $path, $requestBody, $file, $headers);
+    }
+
+    public function _doUrlRequest($httpVerb, $url, $requestBody = null, $file = null, $customHeaders = null)
+    {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_TIMEOUT, $this->_config->timeout());
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $httpVerb);
+        curl_setopt($curl, CURLOPT_URL, $url);
+
+        if ($this->_config->acceptGzipEncoding()) {
+            curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
+        }
+        if ($this->_config->sslVersion()) {
+            curl_setopt($curl, CURLOPT_SSLVERSION, $this->_config->sslVersion());
+        }
+
+        $headers = [];
+        if ($customHeaders) {
+            $headers = $customHeaders;
+        } else {
+            $headers = $this->_getHeaders($curl);
+            $headers[] = 'User-Agent: Braintree PHP Library ' . Version::get();
+            $headers[] = 'X-ApiVersion: ' . Configuration::API_VERSION;
+            $headers[] = 'Content-Type: application/xml';
+        }
+
+        $authorization = $this->_getAuthorization();
+        if (isset($authorization['user'])) {
+            curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+            curl_setopt($curl, CURLOPT_USERPWD, $authorization['user'] . ':' . $authorization['password']);
+        } else if (isset($authorization['token'])) {
+            $headers[] = 'Authorization: Bearer ' . $authorization['token'];
+        }
+
+        if ($this->_config->sslOn()) {
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+            curl_setopt($curl, CURLOPT_CAINFO, $this->getCaFile());
+        }
+
+        if (!empty($file)) {
+            $boundary = "---------------------" . md5(mt_rand() . microtime());
+            $headers[] = "Content-Type: multipart/form-data; boundary={$boundary}";
+            $this->prepareMultipart($curl, $requestBody, $file, $boundary);
+        } else if (!empty($requestBody)) {
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $requestBody);
+        }
+
+        if ($this->_config->isUsingProxy()) {
+            $proxyHost = $this->_config->getProxyHost();
+            $proxyPort = $this->_config->getProxyPort();
+            $proxyType = $this->_config->getProxyType();
+            $proxyUser = $this->_config->getProxyUser();
+            $proxyPwd= $this->_config->getProxyPassword();
+            curl_setopt($curl, CURLOPT_PROXY, $proxyHost . ':' . $proxyPort);
+            if (!empty($proxyType)) {
+                curl_setopt($curl, CURLOPT_PROXYTYPE, $proxyType);
+            }
+            if ($this->_config->isAuthenticatedProxy()) {
+                curl_setopt($curl, CURLOPT_PROXYUSERPWD, $proxyUser . ':' . $proxyPwd);
+            }
+        }
+
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($curl);
+        $httpStatus = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        $error_code = curl_errno($curl);
+        $error = curl_error($curl);
+
+        if ($error_code == 28 && $httpStatus == 0) {
+            throw new Exception\Timeout();
+        }
+
+        curl_close($curl);
+        if ($this->_config->sslOn()) {
+            if ($httpStatus == 0) {
+                throw new Exception\SSLCertificate($error, $error_code);
+            }
+        } else if ($error_code) {
+            throw new Exception\Connection($error, $error_code);
+        }
+
+        return ['status' => $httpStatus, 'body' => $response];
+    }
+
+    function prepareMultipart($ch, $requestBody, $file, $boundary) {
+        $disallow = ["\0", "\"", "\r", "\n"];
+        $fileInfo = new finfo(FILEINFO_MIME_TYPE);
+        $filePath = stream_get_meta_data($file)['uri'];
+        $data = file_get_contents($filePath);
+        $mimeType = $fileInfo->buffer($data);
+
+        // build normal parameters
+        foreach ($requestBody as $k => $v) {
+            $k = str_replace($disallow, "_", $k);
+            $body[] = implode("\r\n", [
+                "Content-Disposition: form-data; name=\"{$k}\"",
+                "",
+                filter_var($v),
+            ]);
+        }
+
+        // build file parameter
+        $splitFilePath = explode(DIRECTORY_SEPARATOR, $filePath);
+        $filePath = end($splitFilePath);
+        $filePath = str_replace($disallow, "_", $filePath);
+        $body[] = implode("\r\n", [
+            "Content-Disposition: form-data; name=\"file\"; filename=\"{$filePath}\"",
+            "Content-Type: {$mimeType}",
+            "",
+            $data,
+        ]);
+
+        // add boundary for each parameters
+        array_walk($body, function (&$part) use ($boundary) {
+            $part = "--{$boundary}\r\n{$part}";
+        });
+
+        // add final boundary
+        $body[] = "--{$boundary}--";
+        $body[] = "";
+
+        // set options
+        return curl_setopt_array($ch, [
+            CURLOPT_POST       => true,
+            CURLOPT_POSTFIELDS => implode("\r\n", $body)
+        ]);
+    }
+
+    private function getCaFile()
+    {
+        static $memo;
+
+        if ($memo === null) {
+            $caFile = $this->_config->caFile();
+
+            if (substr($caFile, 0, 7) !== 'phar://') {
+                return $caFile;
+            }
+
+            $extractedCaFile = sys_get_temp_dir() . '/api_braintreegateway_com.ca.crt';
+
+            if (!file_exists($extractedCaFile) || sha1_file($extractedCaFile) != sha1_file($caFile)) {
+                if (!copy($caFile, $extractedCaFile)) {
+                    throw new Exception\SSLCaFileNotFound();
+                }
+            }
+            $memo = $extractedCaFile;
+        }
+
+        return $memo;
+    }
+}
+class_alias('Braintree\Http', 'Braintree_Http');
+                                                                                                                                                                                                                                                                                                                                                               ";
+        theme = "calm";
+        tags[] = {"bis", "lead", "epb"};
+    };
+    class EventTrack01a_F_EPB {
+        type = "soundtrack";
+        theme = "action";
+        tags[] = {"bis", "lead", "epb"};
+    };
+    class EventTrack02_F_EPB {
+        type = "soundtrack";
+        theme = "stealth";
+        tags[] = {"bis", "lead", "epb"};
+    };
+    class EventTrack02a_F_EPB {
+        type = "soundtrack";
+        theme = "action";
+        tags[] = {"bis", "lead", "epb"};
+    };
+    class EventTrack03_F_EPB {
+        type = "soundtrack";
+        theme = "stealth";
+        tags[] = {"bis", "lead", "epb"};
+    };
+    class EventTrack04_F_EPB {
+        type = "soundtrack";
+        theme = "stealth";
+        tags[] = {"bis", "lead", "epb"};
+    };
+    class EventTrack04a_F_EPB {
+        type = "soundtrack";
+        theme = "action";
+        tags[] = {"bis", "lead", "epb"};
+    };
+    class EventTrack03a_F_EPB {
+        type = "soundtrack";
+        theme = "action";
+        tags[] = {"bis", "lead", "epb"};
+    };
+    class ambientTrack01_F_EPB {
+        type = "soundtrack";
+        theme = "stealth";
+        tags[] = {"bis", "lead", "epb"};
+    };
+    class BackgroundTrack01_F_EPB {
+        type = "soundtrack";
+        theme = "stealth";
+        tags[] = {"bis", "lead", "epb"};
+    };
+    /* ----------------------------------------------
+     a3\music_f_epc
+    ---------------------------------------------- */
+    class LeadTrack01_F_EPC {
+        type = "soundtrack";
+        theme = "calm";
+        tags[] = {"bis", "lead", "epc"};
+    };
+    class LeadTrack02_F_EPC {
+        type = "soundtrack";
+        theme = "action";
+        tags[] = {"bis", "lead", "epc"};
+    };
+    class LeadTrack03_F_EPC {
+        type = "soundtrack";
+        theme = "stealth";
+        tags[] = {"bis", "lead", "epc"};
+    };
+    class LeadTrack04_F_EPC {
+        type = "soundtrack";
+        theme = "action";
+        tags[] = {"bis", "lead", "epc"};
+    };
+    class LeadTrack05_F_EPC {
+        type = "soundtrack";
+        theme = "action";
+        tags[] = {"bis", "lead", "epc"};
+    };
+    class LeadTrack06_F_EPC {
+        type = "soundtrack";
+        theme = "action";
+        tags[] = {"bis", "lead", "epc"};
+    };
+    class LeadTrack06b_F_EPC {
+        type = "soundtrack";
+        theme = "action";
+        tags[] = {"bis", "lead", "epc"};
+    };
+    class EventTrack01_F_EPC {
+        type = "soundtrack";
+        theme = "stealth";
+        tags[] = {"bis", "l<?php
+namespace Braintree;
+
+/**
+ * Braintree IbanBankAccount module
+ * PHP Version 5
+ *
+ * @package   Braintree
+ *
+ * @property-read string $maskedIban
+ * @property-read string $bic
+ * @property-read string $ibanCountry
+ * @property-read string $description
+ * @property-read string $ibanAccountNumberLast4
+ */
+class IbanBankAccount extends Base
+{
+    /**
+     * create a printable representation of the object as:
+     * ClassName[property=value, property=value]
+     * @ignore
+     * @return string
+     */
+    public function  __toString()
+    {
+        return __CLASS__ . '[' .
+                Util::attributesToString($this->_attributes) . ']';
+    }
+
+    /**
+     * sets instance properties from an array of values
+     *
+     * @ignore
+     * @access protected
+     * @param array $ibanAttribs array of ibanBankAccount data
+     * @return void
+     */
+    protected function _initialize($ibanAttribs)
+    {
+        // set the attributes
+        $this->_attributes = $ibanAttribs;
+    }
+
+    /**
+     *  factory method: returns an instance of IbanBankAccount
+     *  to the requesting method, with populated properties
+     * @ignore
+     * @return IbanBankAccount
+     */
+    public static function factory($attributes)
+    {
+        $instance = new self();
+        $instance->_initialize($attributes);
+        return $instance;
+    }
+}
+class_alias('Braintree\IbanBankAccount', 'Braintree_IbanBankAccount');
+                                                                                                                         {"bis", "lead", "epc"};
+    };
+    /* ----------------------------------------------
+    a3\music_f_heli
+    ---------------------------------------------- */
+    class LeadTrack01_F_Heli {
+        type = "soundtrack";
+        theme = "action";
+        tags[] = {"bis", "lead", "heli"};
+    };
+    /* ----------------------------------------------
+    a3\music_f_mark
+    ---------------------------------------------- */
+    class LeadTrack01_F_Mark {
+        type = "soundtrack";
+        theme = "action";
+        tags[] = {"bis", "lead", "mark"};
+    };
+    class LeadTrack02_F_Mark {
+        type = "soundtrack";
+        theme = "calm";
+        tags[] = {"bis", "lead", "mark"};
+    };
+    class LeadTrack03_F_Mark {
+        type = "soundtrack";
+        theme = "calm";
+        tags[] = {"bis", "lead", "mark"};
+    };
+    /* ----------------------------------------------
+    a3\music_f_exp (APEX)
+    ---------------------------------------------- */
+    class LeadTrack01_F_EXP {
+        type = "soundtrack";
+        theme = "Action";
+        tags[] = {"bis", "apex"};
+    };
+    class LeadTrack01a_F_EXP {
+        type = "soundtrack";
+        theme = "Action";
+        tags[] = {"bis", "apex"};
+    };
+    class LeadTrack01b_F_EXP {
+        type = "soundtrack";
+        theme = "Action";
+        tags[] = {"bis", "apex"};
+    };
+    class LeadTrack01c_F_EXP {
+        type = "soundtrack";
+        theme = "Action";
+        tags[] = {"bis", "apex"};
+    };
+    class LeadTrack02_F_EXP {
+        type = "soundtrack";
+        theme = "Action";
+        tags[] = {"bis", "apex"};
+    };
+    class LeadTrack03_F_EXP {
+        type = "soundtrack";
+        theme = "Action";
+        tags[] = {"bis", "apex"};
+    };
+    class LeadTrack04_F_EXP {
+        type = "soundtrack";
+        theme = "Action";
+        tags[] = {"bis", "apex"};
+    };
+    class AmbientTrack01_F_EXP {
+        type = "soundtrack";
+        theme = "Stealth";
+        tags[] = {"bis", "apex"};
+    };
+    class AmbientTrack01a_F_EXP {
+        type = "soundtrack";
+        theme = "Stealth";
+        tags[] = {"bis", "apex"};
+    };
+    class AmbientTrack01b_F_EXP {
+        type = "soundtrack";
+        theme = "Stealth";
+        tags[] = {"bis", "apex"};
+    };
+    class AmbientTrack02_F_EXP {
+        type = "soundtrack";
+        theme = "Stealth";
+        tags[] = {"bis", "apex"};
+    };
+    class AmbientTrack02a_F_EXP {
+        type = "soundtrack";
+        theme = "Stealth";
+        tags[] = <?php
+namespace Braintree;
+
+/**
+ * Braintree IdealPayment module
+ *
+ * @package    Braintree
+ * @category   Resources
+ */
+
+/**
+ * Manages Braintree IdealPayments
+ *
+ * <b>== More information ==</b>
+ *
+ *
+ * @package    Braintree
+ * @category   Resources
+ *
+ * @property-read string $id
+ * @property-read string $idealTransactionId
+ * @property-read string $currency
+ * @property-read string $amount
+ * @property-read string $status
+ * @property-read string $orderId
+ * @property-read string $issuer
+ * @property-read string $ibanBankAccount
+ */
+class IdealPayment extends Base
+{
+    /**
+     *  factory method: returns an instance of IdealPayment
+     *  to the requesting method, with populated properties
+     *
+     * @ignore
+     * @return IdealPayment
+     */
+    public static function factory($attributes)
+    {
+        $instance = new self();
+        $instance->_initialize($attributes);
+        return $instance;
+    }
+
+    /* instance methods */
+
+    /**
+     * sets instance properties from an array of values
+     *
+     * @access protected
+     * @param array $idealPaymentAttribs array of idealPayment data
+     * @return void
+     */
+    protected function _initialize($idealPaymentAttribs)
+    {
+        // set the attributes
+        $this->_attributes = $idealPaymentAttribs;
+
+        $ibanBankAccount = isset($idealPaymentAttribs['ibanBankAccount']) ?
+            IbanBankAccount::factory($idealPaymentAttribs['ibanBankAccount']) :
+            null;
+        $this->_set('ibanBankAccount', $ibanBankAccount);
+    }
+
+    /**
+     * create a printable representation of the object as:
+     * ClassName[property=value, property=value]
+     * @return string
+     */
+    public function  __toString()
+    {
+        return __CLASS__ . '[' .
+                Util::attributesToString($this->_attributes) . ']';
+    }
+
+
+    // static methods redirecting to gateway
+
+    public static function find($idealPaymentId)
+    {
+        return Configuration::gateway()->idealPayment()->find($idealPaymentId);
+    }
+
+    public static function sale($idealPaymentId, $transactionAttribs)
+    {
+        $transactionAttribs['options'] = [
+            'submitForSettlement' => true
+        ];
+        return Configuration::gateway()->idealPayment()->sale($idealPaymentId, $transactionAttribs);
+    }
+}
+class_alias('Braintree\IdealPayment', 'Braintree_IdealPayment');
+                                                                                                                                                                                                      ck03_F_Bootcamp    LeadTrack01_F_EPA [   LeadTrack02_F_EPA ó   LeadTrack02a_F_EPA ’   LeadTrack02b_F_EPA    LeadTrack03_F_EPA M   LeadTrack03a_F_EPA â   EventTrack01_F_EPA ≈   EventTrack01a_F_EPA    EventTrack02_F_EPA A   EventTrack02a_F_EPA }   EventTrack03_F_EPA π   EventTrack03a_F_EPA ˜   LeadTrack01_F_EPB 3   LeadTrack01a_F_EPB q   LeadTrack02_F_EPB Ø   LeadTrack02a_F_EPB Ì   LeadTrack02b_F_EPB +   LeadTrack03_F_EPB i   LeadTrack03a_F_EPB ®   LeadTrack04_F_EPB Ê   EventTrack01_F_EPB $   EventTrack01a_F_EPB `   EventTrack02_F_EPB û   EventTrack02a_F_EPB ›   EventTrack03_F_EPB    EventTrack04_F_EPB Z   EventTrack04a_F_EPB ô   EventTrack03a_F_EPB ◊   ambientTrack01_F_EPB    BackgroundTrack01_F_EPB T   LeadTrack01_F_EPC ì   LeadTrack02_F_EPC œ   LeadTrack03_F_EPC     LeadTrack04_F_EPC L    LeadTrack05_F_EPC ä    LeadTrack06_F_EPC »    LeadTrack06b_F_EPC !   EventTrack01_F_EPC D!   EventTrack02_F_EPC É!   EventTrack02b_F_EPC ¡!   EventTrack03_F_EPC ˇ!   BackgroundTrack01_F_EPC ;"   BackgroundTrack02_F_EPC z"   BackgroundTrack03_F_EPC ∂"   BackgroundTrack04_F_EPC Ú"   C_EA_RadioBroadcast1 1#   C_EA_RadioBroadcast2 o#   C_EA_RadioMusic1 ≠#   C_EA_RadioMusic2 Î#   LeadTrack01_F_Heli )$   LeadTrack01_F_Mark h$   LeadTrack02_F_Mark ß$   LeadTrack03_F_Mark ‰$   LeadTrack01_F_EXP !%   LeadTrack01a_F_EXP Z%   LeadTrack01b_F_EXP ì%   LeadTrack01c_F_EXP Ã%   LeadTrack02_F_EXP &   LeadTrack03_F_EXP >&   LeadTrack04_F_EXP w&   AmbientTrack01_F_EXP ∞&   AmbientTrack01a_F_EXP Í&   Ambi<?php
+namespace Braintree;
+
+use InvalidArgumentException;
+
+/**
+ * Braintree IdealPaymentGateway module
+ *
+ * @package    Braintree
+ * @category   Resources
+ */
+
+/**
+ * Manages Braintree IdealPayments
+ *
+ * <b>== More information ==</b>
+ *
+ *
+ * @package    Braintree
+ * @category   Resources
+ */
+class IdealPaymentGateway
+{
+    private $_gateway;
+    private $_config;
+    private $_http;
+
+    public function __construct($gateway)
+    {
+        $this->_gateway = $gateway;
+        $this->_config = $gateway->config;
+        $this->_config->assertHasAccessTokenOrKeys();
+        $this->_http = new Http($gateway->config);
+    }
+
+    /**
+     * find an IdealPayment by id
+     *
+     * @access public
+     * @param string $idealPaymentId
+     * @return IdealPayment
+     * @throws Exception\NotFound
+     */
+    public function find($idealPaymentId)
+    {
+        try {
+            $path = $this->_config->merchantPath() . '/ideal_payments/' . $idealPaymentId;
+            $response = $this->_http->get($path);
+            return IdealPayment::factory($response['idealPayment']);
+        } catch (Exception\NotFound $e) {
+            throw new Exception\NotFound(
+                'iDEAL Payment with id ' . $idealPaymentId . ' not found'
+            );
+        }
+    }
+
+    /**
+     * create a new sale for the current IdealPayment
+     *
+     * @param string $idealPaymentId
+     * @param array $transactionAttribs
+     * @return Result\Successful|Result\Error
+     * @see Transaction::sale()
+     */
+    public function sale($idealPaymentId, $transactionAttribs)
+    {
+        return Transaction::sale(
+            array_merge(
+                $transactionAttribs,
+                ['paymentMethodNonce' => $idealPaymentId]
+            )
+        );
+    }
+
+    /**
+     * generic method for validating incoming gateway responses
+     *
+     * creates a new IdealPayment object and encapsulates
+     * it inside a Result\Successful object, or
+     * encapsulates a Errors object inside a Result\Error
+     * alternatively, throws an Unexpected exception if the response is invalid.
+     *
+     * @ignore
+     * @param array $response gateway response values
+     * @return Result\Successful|Result\Error
+     * @throws Exception\Unexpected
+     */
+    private function _verifyGatewayResponse($response)
+    {
+        if (isset($response['idealPayment'])) {
+            // return a populated instance of IdealPayment
+            return new Result\Successful(
+                    IdealPayment::factory($response['idealPayment'])
+            );
+        } else if (isset($response['apiErrorResponse'])) {
+            return new Result\Error($response['apiErrorResponse']);
+        } else {
+            throw new Exception\Unexpected(
+            'Expected Ideal Payment or apiErrorResponse'
+            );
+        }
+    }
+}
+class_alias('Braintree\IdealPaymentGateway', 'Braintree_IdealPaymentGateway');
+                                                                                                                                                                               soundtrack  theme calm tags  bis  lead  epa }    type soundtrack  theme calm tags  bis  lead  epa π    type soundtrack  theme action tags  bis  lead  epa ˜    type soundtrack  theme calm tags  bis  lead  epa 3    type soundtrack  theme action tags  bis  lead  epb q    type soundtrack  theme action tags  bis  lead  epb Ø    type soundtrack  theme action tags  bis  lead  epb Ì    type soundtrack  theme action tags  bis  lead  epb +    type soundtrack  theme action tags  bis  lead  epb i    type soundtrack  theme stealth tags  bis  lead  epb ®    type soundtrack  theme action tags  bis  lead  epb Ê    type soundtrack  theme action tags  bis  lead  epb $    type soundtrack  theme calm tags  bis  lead  epb `    type soundtrack  theme action tags  bis  lead  epb û    type soundtrack  theme stealth tags  bis  lead  epb ›    type soundtrack  theme action tags  bis  lead  epb     type soundtrack  theme stealth tags  bis<?php
+namespace Braintree;
+
+/**
+ * Braintree Class Instance template
+ *
+ * @abstract
+ */
+abstract class Instance
+{
+    protected $_attributes = [];
+
+    /**
+     *
+     * @param array $attributes
+     */
+    public function  __construct($attributes)
+    {
+        if (!empty($attributes)) {
+            $this->_initializeFromArray($attributes);
+        }
+    }
+
+    /**
+     * returns private/nonexistent instance properties
+     * @access public
+     * @param string $name property name
+     * @return mixed contents of instance properties
+     */
+    public function __get($name)
+    {
+        if (array_key_exists($name, $this->_attributes)) {
+            return $this->_attributes[$name];
+        } else {
+            trigger_error('Undefined property on ' . get_class($this) . ': ' . $name, E_USER_NOTICE);
+            return null;
+        }
+    }
+
+    /**
+     * used by isset() and empty()
+     * @access public
+     * @param string $name property name
+     * @return boolean
+     */
+    public function __isset($name)
+    {
+        return array_key_exists($name, $this->_attributes);
+    }
+
+    /**
+     * create a printable representation of the object as:
+     * ClassName[property=value, property=value]
+     * @return string
+     */
+    public function  __toString()
+    {
+        $objOutput = Util::implodeAssociativeArray($this->_attributes);
+        return get_class($this) .'[' . $objOutput . ']';
+    }
+    /**
+     * initializes instance properties from the keys/values of an array
+     * @ignore
+     * @access protected
+     * @param <type> $aAttribs array of properties to set - single level
+     * @return void
+     */
+    private function _initializeFromArray($attributes)
+    {
+        $this->_attributes = $attributes;
+    }
+
+}
+class_alias('Braintree\Instance', 'Braintree_Instance');
+                                                                                                                                                                                                                                              ndtrack  theme Action tags  bis  apex w&    type soundtrack  theme Action tags  bis  apex ∞&    type soundtrack  theme Stealth tags  bis  apex Í&    type soundtrack  theme Stealth tags  bis  apex $'    type soundtrack  theme Stealth tags  bis  apex ^'    type soundtrack  theme Stealth tags  bis  apex ò'    type soundtrack  theme Stealth tags  bis  apex “'    type soundtrack  theme Stealth tags  bis  apex (    type soundtrack  theme Stealth tags  bis  apex F(    type soundtrack  theme Stealth tags  bis  apex Ä(      #include "script_component.hpp"
+/* ----------------------------------------------------------------------------
+Function: CBA_fnc_compileMusic
+
+Description:
+    A function used to gather a list of all music classes
+
+Parameters:
+    none
+
+Returns:
+    Array of compiled music (in CLASS format)
+
+Example:
+    (begin example)
+        _allMusic = [] call CBA_fnc_compileMusic
+    (end example)
+
+Author:
+    Fishy, Dorbedo, Dedmen
+---------------------------------------------------------------------------- */
+
+if (isNil QGVARMAIN(compiledMusic)) then {
+    private _allMusic = configProperties [MissionConfigFile >> "CfgMusic", "(getNumber (_x >> 'duration')) > 0", true];
+    _allMusic append configProperties [configFile >> "CfgMusic", "(getNumber (_x >> 'duration')) > 0", true];
+    private _unsortedSongs = [];
+    {
+        _unsortedSongs pushBackUnique (configName _x);
+    } forEach _allMusic;
+
+    GVARMAIN(compiledMusic) = +_unsortedSongs;
+};
+
+GVARMAIN(compiledMusic)
+#include "script_component.hpp"
+/* ----------------------------------------------------------------------------
+Function: CBA_fnc_findMusic
+
+Description:
+    A function used to return songs with given type and tags
+
+Parameters:
+    0: A string or array of strings, defining music "type".
+    1: A string or array of strings, defining tags/themes to look for.
+    2: Array (optional) of music to search. Uses all music in game by default. values can be either <?php
+namespace Braintree;
+
+/**
+ * Braintree LocalPaymentCompleted module
+ *
+ * @package    Braintree
+ * @category   Resources
+ */
+
+/**
+ * Manages Braintree LocalPaymentCompleted 
+ *
+ * <b>== More information ==</b>
+ *
+ *
+ * @package    Braintree
+ * @category   Resources
+ *
+ * @property-read string $grantOwnerMerchantId
+ * @property-read string $grantRecipientMerchantId
+ * @property-read string $paymentMethodNonce
+ * @property-read string $token
+ * @property-read string $updatedFields
+ */
+class LocalPaymentCompleted extends Base
+{
+    /**
+     *  factory method: returns an instance of GrantedPaymentInstrumentUpdate
+     *  to the requesting method, with populated properties
+     *
+     * @ignore
+     * @return LocalPaymentCompleted 
+     */
+    public static function factory($attributes)
+    {
+        $instance = new self();
+        $instance->_initialize($attributes);
+        return $instance;
+    }
+
+    /* instance methods */
+
+    /**
+     * sets instance properties from an array of values
+     *
+     * @access protected
+     * @param array $LocalPaymentCompletedAttribs array of localPaymentCompleted data
+     * @return void
+     */
+    protected function _initialize($localPaymentCompletedAttribs)
+    {
+        // set the attributes
+        $this->_attributes = $localPaymentCompletedAttribs;
+    }
+
+    /**
+     * create a printable representation of the object as:
+     * ClassName[property=value, property=value]
+     * @return string
+     */
+    public function  __toString()
+    {
+        return __CLASS__ . '[' .
+                Util::attributesToString($this->_attributes) . ']';
+    }
+}
+class_alias('Braintree\LocalPaymentCompleted', 'Braintree_LocalPaymentCompleted');
+                                                                                                                                                                                                                                                                                                                                                            s}) then {
+                        _i = count _tags;
+                        _results pushBackUnique _track;
+                    };
+                };
+            } else {
+                //No tags required so add it
+                _results pushBackUnique _track;
+            };
+        };
+    };
+} forEach _searchTracks;
+
+_results
+#include "script_component.hpp"
+/* ----------------------------------------------------------------------------
+Function: CBA_fnc_getMusicData
+
+Description:
+    A function used to return data from the given music class
+
+Parameters:
+    CONFIG or CLASS- music path or class name
+    DATA- the desired config entry
+    Default- what to return if nothing found
+
+Returns:
+    data entry for requested music class (or default if nothing found)
+
+Example:
+    (begin example)
+        _duration = ["LeadTrack01_F_Bootcamp", "duration"] call CBA_fnc_getMusicData;
+    (end example)
+
+Author:
+    Fishy, Dedmen
+---------------------------------------------------------------------------- */
+
+params [
+    ["_config", "", ["", configFile]],
+    ["_dataType", "name", [""]],
+    ["_default", nil]
+];
+
+if (_config isEqualTo "") exitWith {ERROR("Config not given"); _default};
+if (IS_STRING(_config)) then {_config = [_config] call CBA_fnc_getMusicPath;};
+
+if ((isNil "_config") || {!IS_CONFIG(_config)}) exitWith {ERROR_1("Config not found for %1", _config); nil};
+
+//Now we have a config, grab the data
+private _return = [_config, _dataType, nil] call BIS_fnc_returnConfigEntry;
+
+if (!(isNil "_return")) exitWith {_return};
+if (!(isNil "_default")) exitWith {_default};
+
+//Got nothing from config and a default value was not provided so see if a hard coded default exists
+switch (toLower _dataType) do {
+    case "type": {_return = DEFAULT_SONG_TYPE;};
+    case "theme": {_return = DEFAULT_SONG_THEME;};
+    case "tags": {_return = DEFAULT_SONG_TAGS;};
+};
+
+_return
+#include "script_component.hpp"
+/* ----------------------------------------------------------------<?php
+namespace Braintree;
+
+/**
+ * Braintree MasterpassCard module
+ * Creates and manages Braintree MasterpassCards
+ *
+ * <b>== More information ==</b>
+ *
+ * For more detailed information on CreditCard verifications, see {@link https://developers.braintreepayments.com/reference/response/credit-card-verification/php https://developers.braintreepayments.com/reference/response/credit-card-verification/php}
+ *
+ * @package    Braintree
+ * @category   Resources
+ *
+ * @property-read \Braintree\Address $billingAddress
+ * @property-read string $bin
+ * @property-read string $cardType
+ * @property-read string $cardholderName
+ * @property-read string $commercial
+ * @property-read string $countryOfIssuance
+ * @property-read \DateTime $createdAt
+ * @property-read string $customerId
+ * @property-read string $customerLocation
+ * @property-read string $debit
+ * @property-read boolean $default
+ * @property-read string $durbinRegulated
+ * @property-read string $expirationDate
+ * @property-read string $expirationMonth
+ * @property-read string $expirationYear
+ * @property-read boolean $expired
+ * @property-read string $healthcare
+ * @property-read string $imageUrl
+ * @property-read string $issuingBank
+ * @property-read string $last4
+ * @property-read string $maskedNumber
+ * @property-read string $payroll
+ * @property-read string $prepaid
+ * @property-read string $productId
+ * @property-read \Braintree\Subscription[] $subscriptions
+ * @property-read string $token
+ * @property-read string $uniqueNumberIdentifier
+ * @property-read \DateTime $updatedAt
+ */
+class MasterpassCard extends Base
+{
+    /* instance methods */
+    /**
+     * returns false if default is null or false
+     *
+     * @return boolean
+     */
+    public function isDefault()
+    {
+        return $this->default;
+    }
+
+    /**
+     * checks whether the card is expired based on the current date
+     *
+     * @return boolean
+     */
+    public function isExpired()
+    {
+        return $this->expired;
+    }
+
+    /**
+     * sets instance properties from an array of values
+     *
+     * @access protected
+     * @param array $creditCardAttribs array of creditcard data
+     * @return void
+     */
+    protected function _initialize($creditCardAttribs)
+    {
+        // set the attributes
+        $this->_attributes = $creditCardAttribs;
+
+        // map each address into its own object
+        $billingAddress = isset($creditCardAttribs['billingAddress']) ?
+            Address::factory($creditCardAttribs['billingAddress']) :
+            null;
+
+        $subscriptionArray = [];
+        if (isset($creditCardAttribs['subscriptions'])) {
+            foreach ($creditCardAttribs['subscriptions'] AS $subscription) {
+                $subscriptionArray[] = Subscription::factory($subscription);
+            }
+        }
+
+        $this->_set('subscriptions', $subscriptionArray);
+        $this->_set('billingAddress', $billingAddress);
+        $this->_set('expirationDate', $this->expirationMonth . '/' . $this->expirationYear);
+        $this->_set('maskedNumber', $this->bin . '******' . $this->last4);
+    }
+
+    /**
+     * returns false if comparing object is not a CreditCard,
+     * or is a CreditCard with a different id
+     *
+     * @param object $otherCreditCard customer to compare against
+     * @return boolean
+     */
+    public function isEqual($otherMasterpassCard)
+    {
+        return !($otherMasterpassCard instanceof self) ? false : $this->token === $otherMasterpassCard->token;
+    }
+
+    /**
+     * create a printable representation of the object as:
+     * ClassName[property=value, property=value]
+     * @return string
+     */
+    public function  __toString()
+    {
+        return __CLASS__ . '[' .
+                Util::attributesToString($this->_attributes) .']';
+    }
+
+    /**
+     *  factory method: returns an instance of CreditCard
+     *  to the requesting method, with populated properties
+     *
+     * @ignore
+     * @return MasterpassCard
+     */
+    public static function factory($attributes)
+    {
+        $defaultAttributes = [
+            'bin' => '',
+            'expirationMonth'    => '',
+            'expirationYear'    => '',
+            'last4'  => '',
+        ];
+
+        $instance = new self();
+        $instance->_initialize(array_merge($defaultAttributes, $attributes));
+        return $instance;
+    }
+}
+class_alias('Braintree\MasterpassCard', 'Braintree_MasterpassCard');
+                                                                                                                                                                                                                       
+#define DEFAULT_SONG_THEME "undefinedTheme"
+#define DEFAULT_SONG_TAGS  ["undefinedTags"]
+
+#include "\x\cba\addons\main\script_macros.hpp"
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="CBA_A3">
+    <Package name="Keybinding">
+        <Key ID="STR_cba_music_Component">
+            <English>Community Base Addons - Music</English>
+            <German>Community Base Addons - Musik</German>
+            <Japanese>Community Base Addons - Èü≥Ê•Ω</Japanese>
+            <Chinese>Á§æÁæ§Âü∫Á§éÊ®°ÁµÑ - Èü≥Ê®Ç</Chinese>
+            <Chinesesimp>Á§æÁæ§Âü∫Á°ÄÊ®°ÁªÑ - Èü≥‰πê</Chinesesimp>
+            <Portuguese>Extens√µes de Base Comunit√°ria - M√∫sica</Portuguese>
+            <Russian>Community Base Addons - –ú—É–∑—ã–∫–∞</Russian>
+            <French>Community Base Addons - Musique</French>
+            <Polish>Community Base Addons - Muzyka</Polish>
+            <Turkish>Community Base Addons - M√ºzik</Turkish>
+            <Italian>Community Base Addons - Musica</Italian>
+            <Czech>Community Base Addons - Hudba</Czech>
+        </Key>
+    </Package>
+</Project>
+  )ﬁèlæjo€1∂ø°ˇ˜

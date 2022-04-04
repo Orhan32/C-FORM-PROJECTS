@@ -1,0 +1,10 @@
+E:\Projeler\Form C#\LedArduino\LedArduino\bin\Debug\LedArduino.exe.config
+E:\Projeler\Form C#\LedArduino\LedArduino\bin\Debug\LedArduino.exe
+E:\Projeler\Form C#\LedArduino\LedArduino\bin\Debug\LedArduino.pdb
+E:\Projeler\Form C#\LedArduino\LedArduino\obj\Debug\LedArduino.csprojAssemblyReference.cache
+E:\Projeler\Form C#\LedArduino\LedArduino\obj\Debug\LedArduino.Form1.resources
+E:\Projeler\Form C#\LedArduino\LedArduino\obj\Debug\LedArduino.Properties.Resources.resources
+E:\Projeler\Form C#\LedArduino\LedArduino\obj\Debug\LedArduino.csproj.GenerateResource.cache
+E:\Projeler\Form C#\LedArduino\LedArduino\obj\Debug\LedArduino.csproj.CoreCompileInputs.cache
+E:\Projeler\Form C#\LedArduino\LedArduino\obj\Debug\LedArduino.exe
+E:\Projeler\Form C#\LedArduino\LedArduino\obj\Debug\LedArduino.pdb

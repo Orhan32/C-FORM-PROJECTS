@@ -1,0 +1,10 @@
+E:\Projeler\Form C#\Arduino Step Motor\Arduino Step Motor\bin\Debug\Arduino Step Motor.exe.config
+E:\Projeler\Form C#\Arduino Step Motor\Arduino Step Motor\bin\Debug\Arduino Step Motor.exe
+E:\Projeler\Form C#\Arduino Step Motor\Arduino Step Motor\bin\Debug\Arduino Step Motor.pdb
+E:\Projeler\Form C#\Arduino Step Motor\Arduino Step Motor\obj\Debug\Arduino Step Motor.csprojAssemblyReference.cache
+E:\Projeler\Form C#\Arduino Step Motor\Arduino Step Motor\obj\Debug\Arduino_Step_Motor.Form1.resources
+E:\Projeler\Form C#\Arduino Step Motor\Arduino Step Motor\obj\Debug\Arduino_Step_Motor.Properties.Resources.resources
+E:\Projeler\Form C#\Arduino Step Motor\Arduino Step Motor\obj\Debug\Arduino Step Motor.csproj.GenerateResource.cache
+E:\Projeler\Form C#\Arduino Step Motor\Arduino Step Motor\obj\Debug\Arduino Step Motor.csproj.CoreCompileInputs.cache
+E:\Projeler\Form C#\Arduino Step Motor\Arduino Step Motor\obj\Debug\Arduino Step Motor.exe
+E:\Projeler\Form C#\Arduino Step Motor\Arduino Step Motor\obj\Debug\Arduino Step Motor.pdb

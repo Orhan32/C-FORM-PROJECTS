@@ -1,0 +1,12 @@
+E:\Projeler\C# FORM\Among US\Among US\bin\Debug\Among US.exe.config
+E:\Projeler\C# FORM\Among US\Among US\bin\Debug\Among US.exe
+E:\Projeler\C# FORM\Among US\Among US\bin\Debug\Among US.pdb
+E:\Projeler\C# FORM\Among US\Among US\bin\Debug\Memory.dll
+E:\Projeler\C# FORM\Among US\Among US\obj\Debug\Among US.csprojAssemblyReference.cache
+E:\Projeler\C# FORM\Among US\Among US\obj\Debug\Among_US.Form1.resources
+E:\Projeler\C# FORM\Among US\Among US\obj\Debug\Among_US.Properties.Resources.resources
+E:\Projeler\C# FORM\Among US\Among US\obj\Debug\Among US.csproj.GenerateResource.cache
+E:\Projeler\C# FORM\Among US\Among US\obj\Debug\Among US.csproj.CoreCompileInputs.cache
+E:\Projeler\C# FORM\Among US\Among US\obj\Debug\Among US.csproj.CopyComplete
+E:\Projeler\C# FORM\Among US\Among US\obj\Debug\Among US.exe
+E:\Projeler\C# FORM\Among US\Among US\obj\Debug\Among US.pdb

@@ -1,0 +1,59 @@
+[43764:41108:0710/022645.268:INFO:CONSOLE(44)] "[FAST CONNECT] wss://gateway.discord.gg/?encoding=json&v=6&compress=zlib-stream, encoding: json, version: 6", source: https://discord.com/channels/730905860976410702/730907991938695180 (44)
+[43764:41108:0710/022645.511:INFO:CONSOLE(16)] "[BUILD INFO] Release Channel: stable, Build Number: 63064, Version Hash: b9d8a948b4ee8269c6b1574d5136d131cad46b3b", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022646.272:INFO:CONSOLE(16)] "[FAST CONNECT] connected in 1003ms", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022646.427:INFO:CONSOLE(16)] "%c[GatewaySocket] 
+  font-weight: bold;
+  color: purple;
+ Connected, current state is 0", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022646.428:INFO:CONSOLE(16)] "%c[GatewayDiscovery] 
+  font-weight: bold;
+  color: purple;
+ [STICKY] wss://gateway.discord.gg", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022646.461:INFO:CONSOLE(16)] "%c[GatewaySocket] 
+  font-weight: bold;
+  color: purple;
+ [CONNECT] wss://gateway.discord.gg, encoding: json, version: 6, compression: zlib-stream", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022646.462:INFO:CONSOLE(16)] "%c[GatewaySocket] 
+  font-weight: bold;
+  color: purple;
+ [CONNECTED] wss://gateway.discord.gg/?encoding=json&v=6&compress=zlib-stream in 0 ms", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022646.463:INFO:CONSOLE(16)] "%c[GatewaySocket] 
+  font-weight: bold;
+  color: purple;
+ [IDENTIFY]", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022646.607:INFO:CONSOLE(16)] "%c[GatewaySocket] 
+  font-weight: bold;
+  color: purple;
+ [HELLO] via ["gateway-prd-main-0zhd",{"micros":0.0}], heartbeat interval: 41250, took 139 ms", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022646.837:INFO:CONSOLE(16)] "%c[GatewaySocket] 
+  font-weight: bold;
+  color: purple;
+ [READY] via ["gateway-prd-main-0zhd",{"micros":82892,"calls":["discord-sessions-prd-1-49",{"micros":69544,"calls":["start_session",{"micros":60699,"calls":["api-prd-main-r907",{"micros":54777,"calls":["get_user",{"micros":3636},"add_authorized_ip",{"micros":3417},"get_guilds",{"micros":2032},"private_channels",{"micros":10314},"read_states",{"micros":778},"coros_wait",{"micros":1002},"aliases",{"micros":908},"affine_user_ids",{"micros":23769},"experiments",{"micros":2420}]}]},"guilds_connect",{"micros":1395,"calls":[]},"presence_connect",{"micros":1,"calls":[]}]}]}] as 4b9c336acecd803fd5beae6651703354, took 375 ms", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022646.897:INFO:CONSOLE(16)] "%c[MessageActionCreators] 
+  font-weight: bold;
+  color: purple;
+ Fetching messages for 730907991938695180 between null and null.", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022647.514:INFO:CONSOLE(16)] "%c[MessageActionCreators] 
+  font-weight: bold;
+  color: purple;
+ Fetched 19 messages for 730907991938695180 isBefore:false isAfter:false", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022648.233:INFO:CONSOLE(16)] "react-spring: interpolate() will be deprecated in v10, use .to()", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022752.391:INFO:CONSOLE(16)] "%c[MessageActionCreators] 
+  font-weight: bold;
+  color: purple;
+ Fetching messages for 730905901275545652 between null and null.", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022752.494:INFO:CONSOLE(16)] "%c[RouterUtils] 
+  font-weight: bold;
+  color: purple;
+ Transitioning to /channels/730905860976410702/730905901275545652", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022752.602:INFO:CONSOLE(16)] "%c[MessageActionCreators] 
+  font-weight: bold;
+  color: purple;
+ Fetched 50 messages for 730905901275545652 isBefore:false isAfter:false", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022800.344:INFO:CONSOLE(16)] "%cBekle! color: #7289DA; -webkit-text-stroke: 2px black; font-size: 72px; font-weight: bold;", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022800.345:INFO:CONSOLE(16)] "%cBurada birisi sana bir şeyi kopyala/yapıştır yapmanı söylediyse 11/10 ihtimalle dolandırılıyorsun. font-size: 16px;", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022800.346:INFO:CONSOLE(16)] "%cBurada bir şeyi yapıştırmak saldırganlara Discord hesabının erişimini verebilir. font-size: 18px; font-weight: bold; color: red;", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022800.346:INFO:CONSOLE(16)] "%cNe yaptığından tam olarak emin değilsen, bu pencereyi kapat ve güvende kal. font-size: 16px;", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022800.348:INFO:CONSOLE(16)] "%cEğer tam olarak ne yaptığını biliyorsan gelip bizimle çalışman süper olur https://discord.com/jobs font-size: 16px;", source: https://discord.com/assets/ba6d1ea29f98d65d01f7.js (16)
+[43764:41108:0710/022833.535:WARNING:pref_notifier_impl.cc(40)] Pref observer for devtools.file_system_paths found at shutdown.
+[43764:41108:0710/022833.992:WARNING:pref_notifier_impl.cc(40)] Pref observer for media_router.cast_allow_all_ips found at shutdown.

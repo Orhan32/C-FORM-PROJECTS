@@ -1,0 +1,13 @@
+E:\Projeler\Form C#\DiscordBot\DiscordBot\bin\Debug\DiscordBot.exe.config
+E:\Projeler\Form C#\DiscordBot\DiscordBot\bin\Debug\DiscordBot.exe
+E:\Projeler\Form C#\DiscordBot\DiscordBot\bin\Debug\DiscordBot.pdb
+E:\Projeler\Form C#\DiscordBot\DiscordBot\obj\Debug\DiscordBot.csprojAssemblyReference.cache
+E:\Projeler\Form C#\DiscordBot\DiscordBot\obj\Debug\DiscordBot.Form1.resources
+E:\Projeler\Form C#\DiscordBot\DiscordBot\obj\Debug\DiscordBot.Properties.Resources.resources
+E:\Projeler\Form C#\DiscordBot\DiscordBot\obj\Debug\DiscordBot.csproj.GenerateResource.cache
+E:\Projeler\Form C#\DiscordBot\DiscordBot\obj\Debug\DiscordBot.csproj.CoreCompileInputs.cache
+E:\Projeler\Form C#\DiscordBot\DiscordBot\obj\Debug\DiscordBot.exe
+E:\Projeler\Form C#\DiscordBot\DiscordBot\obj\Debug\DiscordBot.pdb
+E:\Projeler\Form C#\DiscordBot\DiscordBot\bin\Debug\WebDriver.dll
+E:\Projeler\Form C#\DiscordBot\DiscordBot\bin\Debug\WebDriver.xml
+E:\Projeler\Form C#\DiscordBot\DiscordBot\obj\Debug\DiscordBot.csproj.CopyComplete

@@ -1,0 +1,10 @@
+E:\Projeler\Form C#\KraliYakala\KraliYakala\bin\Debug\KraliYakala.exe.config
+E:\Projeler\Form C#\KraliYakala\KraliYakala\bin\Debug\KraliYakala.exe
+E:\Projeler\Form C#\KraliYakala\KraliYakala\bin\Debug\KraliYakala.pdb
+E:\Projeler\Form C#\KraliYakala\KraliYakala\obj\Debug\KraliYakala.csprojAssemblyReference.cache
+E:\Projeler\Form C#\KraliYakala\KraliYakala\obj\Debug\KraliYakala.KraliYakala.resources
+E:\Projeler\Form C#\KraliYakala\KraliYakala\obj\Debug\KraliYakala.Properties.Resources.resources
+E:\Projeler\Form C#\KraliYakala\KraliYakala\obj\Debug\KraliYakala.csproj.GenerateResource.cache
+E:\Projeler\Form C#\KraliYakala\KraliYakala\obj\Debug\KraliYakala.csproj.CoreCompileInputs.cache
+E:\Projeler\Form C#\KraliYakala\KraliYakala\obj\Debug\KraliYakala.exe
+E:\Projeler\Form C#\KraliYakala\KraliYakala\obj\Debug\KraliYakala.pdb
