@@ -1,0 +1,9 @@
+E:\Projeler\ScreenShot\bin\Debug\ScreenShot.exe.config
+E:\Projeler\ScreenShot\bin\Debug\ScreenShot.exe
+E:\Projeler\ScreenShot\bin\Debug\ScreenShot.pdb
+E:\Projeler\ScreenShot\obj\Debug\ScreenShot.csprojAssemblyReference.cache
+E:\Projeler\ScreenShot\obj\Debug\ScreenShot.Form1.resources
+E:\Projeler\ScreenShot\obj\Debug\ScreenShot.Properties.Resources.resources
+E:\Projeler\ScreenShot\obj\Debug\ScreenShot.csproj.GenerateResource.cache
+E:\Projeler\ScreenShot\obj\Debug\ScreenShot.exe
+E:\Projeler\ScreenShot\obj\Debug\ScreenShot.pdb
