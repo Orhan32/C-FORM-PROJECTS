@@ -1,0 +1,20 @@
+E:\Projeler\Ip Adres Bulucu\bin\Debug\Ip Adres Bulucu.exe.config
+E:\Projeler\Ip Adres Bulucu\bin\Debug\Ip Adres Bulucu.exe
+E:\Projeler\Ip Adres Bulucu\bin\Debug\Ip Adres Bulucu.pdb
+E:\Projeler\Ip Adres Bulucu\obj\Debug\Ip Adres Bulucu.csprojAssemblyReference.cache
+E:\Projeler\Ip Adres Bulucu\obj\Debug\Ip_Adres_Bulucu.Form1.resources
+E:\Projeler\Ip Adres Bulucu\obj\Debug\Ip_Adres_Bulucu.Properties.Resources.resources
+E:\Projeler\Ip Adres Bulucu\obj\Debug\Ip Adres Bulucu.csproj.GenerateResource.cache
+E:\Projeler\Ip Adres Bulucu\obj\Debug\Ip Adres Bulucu.exe
+E:\Projeler\Ip Adres Bulucu\obj\Debug\Ip Adres Bulucu.pdb
+D:\PROJELER\HDD\Ip Adres Bulucu\bin\Debug\Ip Adres Bulucu.exe.config
+D:\PROJELER\HDD\Ip Adres Bulucu\bin\Debug\Ip Adres Bulucu.exe
+D:\PROJELER\HDD\Ip Adres Bulucu\bin\Debug\Ip Adres Bulucu.pdb
+D:\PROJELER\HDD\Ip Adres Bulucu\obj\Debug\Ip Adres Bulucu.csproj.AssemblyReference.cache
+D:\PROJELER\HDD\Ip Adres Bulucu\obj\Debug\Ip Adres Bulucu.csproj.SuggestedBindingRedirects.cache
+D:\PROJELER\HDD\Ip Adres Bulucu\obj\Debug\Ip_Adres_Bulucu.Form1.resources
+D:\PROJELER\HDD\Ip Adres Bulucu\obj\Debug\Ip_Adres_Bulucu.Properties.Resources.resources
+D:\PROJELER\HDD\Ip Adres Bulucu\obj\Debug\Ip Adres Bulucu.csproj.GenerateResource.cache
+D:\PROJELER\HDD\Ip Adres Bulucu\obj\Debug\Ip Adres Bulucu.csproj.CoreCompileInputs.cache
+D:\PROJELER\HDD\Ip Adres Bulucu\obj\Debug\Ip Adres Bulucu.exe
+D:\PROJELER\HDD\Ip Adres Bulucu\obj\Debug\Ip Adres Bulucu.pdb
