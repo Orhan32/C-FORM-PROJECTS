@@ -1,0 +1,41 @@
+E:\Projeler\Sınav Çalışma\bin\Debug\Sınav Çalışma.exe.config
+E:\Projeler\Sınav Çalışma\bin\Debug\Sınav Çalışma.exe
+E:\Projeler\Sınav Çalışma\bin\Debug\Sınav Çalışma.pdb
+E:\Projeler\Sınav Çalışma\obj\Debug\Sınav Çalışma.csprojAssemblyReference.cache
+E:\Projeler\Sınav Çalışma\obj\Debug\Sınav_Çalışma.Form1.resources
+E:\Projeler\Sınav Çalışma\obj\Debug\Sınav_Çalışma.Properties.Resources.resources
+E:\Projeler\Sınav Çalışma\obj\Debug\Sınav Çalışma.csproj.GenerateResource.cache
+E:\Projeler\Sınav Çalışma\obj\Debug\Sınav Çalışma.exe
+E:\Projeler\Sınav Çalışma\obj\Debug\Sınav Çalışma.pdb
+E:\Projeler\Sınav Çalışma Databaseli\bin\Debug\Sınav Çalışma.exe.config
+E:\Projeler\Sınav Çalışma Databaseli\bin\Debug\Sınav Çalışma.exe
+E:\Projeler\Sınav Çalışma Databaseli\bin\Debug\Sınav Çalışma.pdb
+E:\Projeler\Sınav Çalışma Databaseli\bin\Debug\EntityFramework.dll
+E:\Projeler\Sınav Çalışma Databaseli\bin\Debug\EntityFramework.SqlServer.dll
+E:\Projeler\Sınav Çalışma Databaseli\bin\Debug\EntityFramework.xml
+E:\Projeler\Sınav Çalışma Databaseli\bin\Debug\EntityFramework.SqlServer.xml
+E:\Projeler\Sınav Çalışma Databaseli\obj\Debug\Sınav Çalışma.csprojAssemblyReference.cache
+E:\Projeler\Sınav Çalışma Databaseli\obj\Debug\Sınav_Çalışma.btn_.resources
+E:\Projeler\Sınav Çalışma Databaseli\obj\Debug\Sınav_Çalışma.Properties.Resources.resources
+E:\Projeler\Sınav Çalışma Databaseli\obj\Debug\Sınav Çalışma.csproj.GenerateResource.cache
+E:\Projeler\Sınav Çalışma Databaseli\obj\Debug\Sınav Çalışma.csproj.CopyComplete
+E:\Projeler\Sınav Çalışma Databaseli\obj\Debug\Sınav Çalışma.exe
+E:\Projeler\Sınav Çalışma Databaseli\obj\Debug\Sınav Çalışma.pdb
+E:\Projeler\Sınav Çalışma Databaseli\obj\Debug\Sınav_Çalışma.FrmView.resources
+D:\PROJELER\HDD\Sınav Çalışma Databaseli\bin\Debug\Sınav Çalışma.exe.config
+D:\PROJELER\HDD\Sınav Çalışma Databaseli\bin\Debug\Sınav Çalışma.exe
+D:\PROJELER\HDD\Sınav Çalışma Databaseli\bin\Debug\Sınav Çalışma.pdb
+D:\PROJELER\HDD\Sınav Çalışma Databaseli\bin\Debug\EntityFramework.dll
+D:\PROJELER\HDD\Sınav Çalışma Databaseli\bin\Debug\EntityFramework.SqlServer.dll
+D:\PROJELER\HDD\Sınav Çalışma Databaseli\bin\Debug\EntityFramework.xml
+D:\PROJELER\HDD\Sınav Çalışma Databaseli\bin\Debug\EntityFramework.SqlServer.xml
+D:\PROJELER\HDD\Sınav Çalışma Databaseli\obj\Debug\Sınav Çalışma.csproj.AssemblyReference.cache
+D:\PROJELER\HDD\Sınav Çalışma Databaseli\obj\Debug\Sınav Çalışma.csproj.SuggestedBindingRedirects.cache
+D:\PROJELER\HDD\Sınav Çalışma Databaseli\obj\Debug\Sınav_Çalışma.btn_.resources
+D:\PROJELER\HDD\Sınav Çalışma Databaseli\obj\Debug\Sınav_Çalışma.FrmView.resources
+D:\PROJELER\HDD\Sınav Çalışma Databaseli\obj\Debug\Sınav_Çalışma.Properties.Resources.resources
+D:\PROJELER\HDD\Sınav Çalışma Databaseli\obj\Debug\Sınav Çalışma.csproj.GenerateResource.cache
+D:\PROJELER\HDD\Sınav Çalışma Databaseli\obj\Debug\Sınav Çalışma.csproj.CoreCompileInputs.cache
+D:\PROJELER\HDD\Sınav Çalışma Databaseli\obj\Debug\Sınav Çalışma.csproj.CopyComplete
+D:\PROJELER\HDD\Sınav Çalışma Databaseli\obj\Debug\Sınav Çalışma.exe
+D:\PROJELER\HDD\Sınav Çalışma Databaseli\obj\Debug\Sınav Çalışma.pdb

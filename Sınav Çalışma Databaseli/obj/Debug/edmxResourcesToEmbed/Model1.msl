@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OgrBilSisModelStoreContainer" CdmEntityContainer="OgrBilSisEntities">
+    <EntitySetMapping Name="Bolumler">
+      <EntityTypeMapping TypeName="OgrBilSisModel.Bolumler">
+        <MappingFragment StoreEntitySet="Bolumler">
+          <ScalarProperty Name="BolumID" ColumnName="BolumID" />
+          <ScalarProperty Name="BolumAdi" ColumnName="BolumAdi" />
+          <ScalarProperty Name="FakulteID" ColumnName="FakulteID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dersler">
+      <EntityTypeMapping TypeName="OgrBilSisModel.Dersler">
+        <MappingFragment StoreEntitySet="Dersler">
+          <ScalarProperty Name="DersID" ColumnName="DersID" />
+          <ScalarProperty Name="DersAdi" ColumnName="DersAdi" />
+          <ScalarProperty Name="AKTS" ColumnName="AKTS" />
+          <ScalarProperty Name="Kredi" ColumnName="Kredi" />
+          <ScalarProperty Name="BolumID" ColumnName="BolumID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fakulteler">
+      <EntityTypeMapping TypeName="OgrBilSisModel.Fakulteler">
+        <MappingFragment StoreEntitySet="Fakulteler">
+          <ScalarProperty Name="FakulteID" ColumnName="FakulteID" />
+          <ScalarProperty Name="FakulteAdi" ColumnName="FakulteAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ogrenciler">
+      <EntityTypeMapping TypeName="OgrBilSisModel.Ogrenciler">
+        <MappingFragment StoreEntitySet="Ogrenciler">
+          <ScalarProperty Name="OgrNo" ColumnName="OgrNo" />
+          <ScalarProperty Name="OgrAd" ColumnName="OgrAd" />
+          <ScalarProperty Name="OgrSoyad" ColumnName="OgrSoyad" />
+          <ScalarProperty Name="TCKimlik" ColumnName="TCKimlik" />
+          <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="BolumID" ColumnName="BolumID" />
+          <ScalarProperty Name="FakulteID" ColumnName="FakulteID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

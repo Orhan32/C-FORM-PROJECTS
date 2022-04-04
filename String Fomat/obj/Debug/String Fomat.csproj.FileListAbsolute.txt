@@ -1,0 +1,14 @@
+E:\Projeler\String Fomat\bin\Debug\String Fomat.exe.config
+E:\Projeler\String Fomat\bin\Debug\String Fomat.exe
+E:\Projeler\String Fomat\bin\Debug\String Fomat.pdb
+E:\Projeler\String Fomat\obj\Debug\String Fomat.csprojAssemblyReference.cache
+E:\Projeler\String Fomat\obj\Debug\String Fomat.exe
+E:\Projeler\String Fomat\obj\Debug\String Fomat.pdb
+D:\PROJELER\HDD\String Fomat\bin\Debug\String Fomat.exe.config
+D:\PROJELER\HDD\String Fomat\bin\Debug\String Fomat.exe
+D:\PROJELER\HDD\String Fomat\bin\Debug\String Fomat.pdb
+D:\PROJELER\HDD\String Fomat\obj\Debug\String Fomat.csproj.AssemblyReference.cache
+D:\PROJELER\HDD\String Fomat\obj\Debug\String Fomat.csproj.SuggestedBindingRedirects.cache
+D:\PROJELER\HDD\String Fomat\obj\Debug\String Fomat.csproj.CoreCompileInputs.cache
+D:\PROJELER\HDD\String Fomat\obj\Debug\String Fomat.exe
+D:\PROJELER\HDD\String Fomat\obj\Debug\String Fomat.pdb
